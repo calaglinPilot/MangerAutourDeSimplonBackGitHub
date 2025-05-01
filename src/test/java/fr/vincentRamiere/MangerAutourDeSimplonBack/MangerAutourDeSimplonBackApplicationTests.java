@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MangerAutourDeSimplonBackApplicationTests {
+public class MangerAutourDeSimplonBackApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void testMain() {
+		MangerAutourDeSimplonBackApplication.main(new String[] {});
 	}
-
 }
