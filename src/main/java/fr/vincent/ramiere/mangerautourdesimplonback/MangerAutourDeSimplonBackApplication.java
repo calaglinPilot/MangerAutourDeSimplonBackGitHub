@@ -1,4 +1,4 @@
-package fr.vincentRamiere.MangerAutourDeSimplonBack;
+package fr.vincent.ramiere.mangerautourdesimplonback;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

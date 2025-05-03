@@ -1,4 +1,4 @@
-package fr.vincentRamiere.MangerAutourDeSimplonBack;
+package fr.vincent.ramiere.mangerautourdesimplonback;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
