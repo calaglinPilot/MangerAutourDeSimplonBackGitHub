@@ -15,23 +15,43 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Personne {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_personne")
     private int id;
+
+    @Column(nullable = false)
     private String nom;
+
+    @Column(nullable = false)
     private String prenom;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "preferencePK.personne", cascade = CascadeType.REMOVE)
+    //@JsonIgnore
     private Collection<Preference> preference = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
     private List<EnumRole> roleList;
 
-    public Personne() {
-        super();
-    }
-
     public Personne(String nom, String prenom, String email, String password, List<EnumRole> roleList) {
-        super();
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -40,85 +60,15 @@ public class Personne {
     }
 
     public Personne(String email, String password, List<EnumRole> roleList) {
-		super();
-		this.email = email;
-		this.password = password;
-		this.roleList = roleList;
-	}
+        this.email = email;
+        this.password = password;
+        this.roleList = roleList;
+    }
 
-    
-	public Personne(String nom, String prenom, String email, String password) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.password = password;
-	}
-
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_personne")
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	@Column(nullable = false)
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	@Column(nullable = false)
-	public String getPrenom() {
-		return prenom;
-	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	@Column(nullable = false)
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Column(nullable = false)
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-
-	@OneToMany(mappedBy = "preferencePK.personne", cascade = CascadeType.REMOVE)
-	//@JsonIgnore
-	public Collection<Preference> getPreference() {
-		return preference;
-	}
-
-
-	public void setPreference(Collection<Preference> preference) {
-		this.preference = preference;
-	}
-
-
-	@ElementCollection(fetch = FetchType.EAGER)
-	@Enumerated(EnumType.STRING)
-	public List<EnumRole> getRoleList() {
-		return roleList;
-	}
-
-
-	public void setRoleList(List<EnumRole> roleList) {
-		this.roleList = roleList;
-	}
-
+    public Personne(String nom, String prenom, String email, String password) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.password = password;
+    }
 }
