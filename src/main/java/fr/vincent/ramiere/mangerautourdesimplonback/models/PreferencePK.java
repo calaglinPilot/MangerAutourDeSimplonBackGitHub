@@ -33,11 +33,11 @@ public class PreferencePK implements Serializable {
     @ManyToOne
     @PrimaryKeyJoinColumn(name = "personne_id", referencedColumnName = "id_personne")
     @JsonBackReference("personne-preferencepk")
-	private Personne personne;
+    private transient Personne personne;
 
     // Clé étrangère vers l'entité Restaurant
     @ManyToOne
 	@PrimaryKeyJoinColumn(name="id_restau",referencedColumnName ="id_restau" )
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
-	private Restaurant restau;
+	private transient Restaurant restau;
 }
